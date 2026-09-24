@@ -2,7 +2,6 @@ package Modelo;
 
 import java.util.*;
 
-/** Grafo no dirigido con pesos no negativos. */
 public class Grafo {
     private final Map<String, Map<String, Double>> adyacencia = new LinkedHashMap<>();
 
@@ -13,7 +12,7 @@ public class Grafo {
 
     public void agregarArista(String origen, String destino, double peso) {
         origen = normalizar(origen); destino = normalizar(destino);
-        if (peso < 0 || !Double.isFinite(peso)) throw new IllegalArgumentException("El peso debe ser un número finito no negativo.");
+        if (peso < 0 || !Double.isFinite(peso)) throw new IllegalArgumentException("El peso debe ser un numero positivo.");
         agregarNodo(origen); agregarNodo(destino);
         adyacencia.get(origen).put(destino, peso);
         adyacencia.get(destino).put(origen, peso);
