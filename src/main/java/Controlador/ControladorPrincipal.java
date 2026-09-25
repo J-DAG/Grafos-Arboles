@@ -26,6 +26,12 @@ public class ControladorPrincipal {
         }));
         vista.corto().addActionListener(e -> resolverGrafo(false));
         vista.largo().addActionListener(e -> resolverGrafo(true));
+        vista.nuevoGrafo().addActionListener(e -> {
+            grafo.limpiar();
+            vista.limpiarCampos();
+            vista.dibujarGrafo(grafo, List.of());
+            vista.mensaje("Grafo reiniciado. Puedes comenzar a agregar nuevos nodos y caminos.");
+        });
     }
 
     public void iniciar() { vista.setVisible(true); }

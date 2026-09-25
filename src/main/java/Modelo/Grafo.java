@@ -10,6 +10,11 @@ public class Grafo {
         adyacencia.computeIfAbsent(id.trim(), k -> new LinkedHashMap<>());
     }
 
+    /** Elimina todos los nodos y conexiones para iniciar un grafo vacío. */
+    public void limpiar() {
+        adyacencia.clear();
+    }
+
     public void agregarArista(String origen, String destino, double peso) {
         origen = normalizar(origen); destino = normalizar(destino);
         if (peso < 0 || !Double.isFinite(peso)) throw new IllegalArgumentException("El peso debe ser un numero positivo.");

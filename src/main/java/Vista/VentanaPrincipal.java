@@ -19,6 +19,7 @@ public class VentanaPrincipal extends JFrame {
     private final JButton agregarArista = new JButton("Agregar camino");
     private final JButton corto = new JButton("Camino más corto");
     private final JButton largo = new JButton("Camino más largo");
+    private final JButton nuevoGrafo = new JButton("Nuevo grafo");
 
     public VentanaPrincipal() {
         super("Explorador de grafos");
@@ -28,8 +29,13 @@ public class VentanaPrincipal extends JFrame {
 
         JPanel formulario = new JPanel();
         formulario.setLayout(new BoxLayout(formulario, BoxLayout.Y_AXIS));
-        JPanel filaNodos = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        filaNodos.add(new JLabel("Nuevo nodo:")); filaNodos.add(nuevoNodo); filaNodos.add(agregarNodo);
+        JPanel filaNodos = new JPanel(new BorderLayout());
+        JPanel controlesNodo = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        controlesNodo.add(new JLabel("Nuevo nodo:")); controlesNodo.add(nuevoNodo); controlesNodo.add(agregarNodo);
+        JPanel controlesGrafo = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        controlesGrafo.add(nuevoGrafo);
+        filaNodos.add(controlesNodo, BorderLayout.WEST);
+        filaNodos.add(controlesGrafo, BorderLayout.EAST);
         JPanel filaCaminos = new JPanel(new FlowLayout(FlowLayout.LEFT));
         filaCaminos.add(new JLabel("Crear camino:"));
         filaCaminos.add(new JLabel("Desde:")); filaCaminos.add(edgeOrigen);
@@ -59,6 +65,11 @@ public class VentanaPrincipal extends JFrame {
     public JButton agregarArista() { return agregarArista; }
     public JButton corto() { return corto; }
     public JButton largo() { return largo; }
+    public JButton nuevoGrafo() { return nuevoGrafo; }
+    public void limpiarCampos() {
+        nuevoNodo.setText(""); edgeOrigen.setText(""); edgeDestino.setText(""); distanciaArista.setText("");
+        grafoOrigen.setText(""); grafoDestino.setText("");
+    }
     public void mensaje(String texto) { salida.setText(texto); }
     public void dibujarGrafo(Grafo grafo, java.util.List<String> ruta) { lienzo.setData(grafo, ruta); }
 
